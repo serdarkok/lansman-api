@@ -24,8 +24,9 @@ exports.postNewUserController = async (req, res) => {
 };
 
 exports.postLoginController = async (req, res) => {
-    const {email, password} = req.body;
-    console.log(email, password);
+    const email = req.body.email;
+    const password = req.body.password;
+    console.log(req.body);
     try{
         const _r = await User.findOne({
             email
@@ -45,7 +46,7 @@ exports.postLoginController = async (req, res) => {
                 }
                 else
                 {
-                    res.status(400).send({
+                    res.status(200).send({
                         status: false,
                         message: 'Kullanıcı adı veya şifreniz hatalıdır'
                     });
@@ -54,7 +55,7 @@ exports.postLoginController = async (req, res) => {
             });
         }
         else {
-            res.status(400).send({
+            res.status(200).send({
                 status: false,
                 message: 'Kullanıcı adı veya şifreniz hatalıdır'
             });
@@ -62,7 +63,7 @@ exports.postLoginController = async (req, res) => {
 
     }
     catch(err) {
-        res.status(400).send({
+        res.status(200).send({
             status: false,
             message: err
         });

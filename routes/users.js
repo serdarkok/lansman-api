@@ -8,6 +8,6 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/list', verifyToken ,userController.userListController);
+router.get('/list', userController.userListController);
 
 module.exports = router;
