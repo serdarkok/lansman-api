@@ -27,5 +27,3 @@ module.exports = (req, res, next) => {
         });
     }
 }
-
-// Evet
