@@ -84,3 +84,31 @@ exports.userListController = async (req, res) => {
     const _list = await User.find({});
     res.status(200).send(_list);
 }
+
+exports.verifyTokenController = async (req, res) => {
+    const _token = req.body.token || req.query.token || req.headers["token"];
+    console.log(_token);
+
+    if(!_token) {
+        res.status(200).send({
+            status: false,
+            message: 'Giriş izniniz bulunmamaktadır'
+        });
+    }
+    else
+    {
+        Jwt.verify(_token, process.env.API_KEY, (error, decoded) => {
+            if(error) {
+                res.status(200).send({
+                    status: false,
+                    message: 'Beklenmedik bir hata oluştu'
+                });
+            } else {
+                res.status(200).send({
+                   status: true,
+                   message: 'Access Token is true'
+                });
+            }
+        });
+    }
+}

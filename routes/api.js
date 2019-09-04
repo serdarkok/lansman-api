@@ -8,4 +8,6 @@ router.post('/login', userController.postLoginController);
 
 router.get('/deleteAll', userController.deleteAllUserController);
 
+router.post('/verifyToken', userController.verifyTokenController);
+
 module.exports = router;
